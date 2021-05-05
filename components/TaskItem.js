@@ -1,16 +1,18 @@
 import React from 'react'
 import { Text, View , StyleSheet, TouchableOpacity } from 'react-native'
 const TaskItem = (props) => {
-    const { text } = props;
+    const { text,deleteItem } = props;
     return (
         <View style = {styles.item}>
             <View style={styles.itemLeft}>
                 <View style={styles.square} ></View>
                 <Text style={styles.itemText}>{ text }</Text>
             </View>
-            <View style={styles.circle}>
+            <TouchableOpacity onPress={deleteItem}>
+            <View style={styles.deleteContainer}>
                 <Text style={styles.deleteIcon}>X</Text>
             </View>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -43,15 +45,16 @@ const styles = StyleSheet.create({
     },
     itemText:{
         maxWidth:'75%',
-        fontSize:18,
+        fontSize:15,
     },
     deleteIcon:{
         fontSize: 20,
+        textAlign:'center',
         alignItems:'center',
         justifyContent:'center',
         margin:0,
     },
-    circle:{
+    deleteContainer:{
         width:25,
         height:25,
         backgroundColor:'red',
